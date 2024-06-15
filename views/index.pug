@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+
+  div(class="container")
+    ul#notes
+      each note in notes
+        li
+          div.content-editable(data-id=note.id contenteditable="true")= note.text
+          button.delete-btn(type="button" data-id=note.id) Delete
+          button.edit-btn(type="button" data-id=note.id) Save
+
+    form(method="POST" action="notes")
+      input(type="text", name="noteText", placeholder="Add a new note here!")
+      button(type="submit") Add Note
